@@ -18,6 +18,10 @@ function App() {
     fetchCountries();
   }, []);
 
+  const filteredCountries = countries.filter(country => 
+    (country.name.common.toLowerCase().includes(term.toLowerCase()) && (region === "" ? country : country.region === region))
+  );
+
   const handleTermChange = (event) => {
     setTerm(event.target.value);
   }
@@ -34,7 +38,7 @@ function App() {
         region={region}
         onRegionChange={handleRegionChange}
       />
-      <Countries countries={countries} />
+      <Countries countries={filteredCountries} />
     </>
   )
 }
