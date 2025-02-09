@@ -8,10 +8,10 @@ function Filter({term, onTermChange, region, onRegionChange}) {
     
     return (
         <form onSubmit={handleSubmit}>
-            <div>
+            <div className="container">
                 <SearchCountry term={term} onChange={onTermChange} />
             </div>
-            <div>
+            <div className="container">
                 <FilterRegion region={region} onChange={onRegionChange} />
             </div>
         </form>

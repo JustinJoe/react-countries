@@ -10,12 +10,17 @@ function CountryCard({country}) {
     }
 
     return (
-        <div onClick={() => handleClick(name.common)}>
-            <img src={flags.svg} alt={flags.alt} />
-            <h2>{name.common}</h2>
-            <h3>Population: <span>{population.toLocaleString()}</span></h3>
-            <h3>Region: <span>{region}</span></h3>
-            <h3>Capital: <span>{capital[0]}</span></h3>
+        <div 
+            className="card"
+            onClick={() => handleClick(name.common)}
+        >
+            <img className="flag" src={flags.svg} alt={flags.alt}/>
+            <div className="centre">
+                <h2>{name.common}</h2>
+                <h3>Population: <span>{population.toLocaleString()}</span></h3>
+                <h3>Region: <span>{region}</span></h3>
+                <h3>Capital: <span>{capital[0]}</span></h3>
+            </div>
         </div>
     )
 }

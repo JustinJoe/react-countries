@@ -3,6 +3,7 @@ function FilterRegion({region, onChange}) {
         <select 
             onChange={onChange} 
             value={region}
+            className="filter"
         >
             <option value="">Filter by Region</option>
             <option value="Africa">Africa</option>

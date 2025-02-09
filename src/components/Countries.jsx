@@ -5,7 +5,7 @@ function Countries({countries}) {
         return <CountryCard key={country.cca3} country={country} />
     })
 
-    return <>{renderedCountries}</>
+    return <div className="container countries">{renderedCountries}</div>
 }
 
 export default Countries;
