@@ -3,14 +3,14 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 function CountryPage() {
-    const [country, setCountry] = useState({});
+    const [country, setCountry] = useState([]);
     const {id} = useParams();
 
     useEffect(() => {
         const fetchCountry = async () => {
             try {
                 const response = await axios.get(`https://restcountries.com/v3.1/name/${id}`);
-                setCountry(response.data[0])
+                setCountry(response.data)
             } catch (errors) {
                 console.log(errors)
             }
@@ -19,11 +19,11 @@ function CountryPage() {
         fetchCountry();
     }, [id]);
 
-    if (!country) {
+    if (country.length < 1) {
         return <h3>Loading...</h3>
     }
 
-    const {name, flags, population, region, subregion, capital, tld, currencies, languages, borders} = country
+    const {name, flags, population, region, subregion, capital, tld, currencies, languages, borders} = country[0]
         
         
         const nameObj = name.nativeName;
@@ -36,10 +36,10 @@ function CountryPage() {
         const langKeys = Object.keys(languages)
         const langs = langKeys.map(l => languages[l]).join(", ")
  
-        const bdrs = borders.map(border => <span>{border}</span>)
+        const bdrs = borders?.map(border => <span>{border}</span>)
 
     return (
-        <>Hello
+        <>
             <div>
                 <img src={flags.svg} alt={flags.alt || `Flag of ${name.common}`} />
                 <h2>{name.common}</h2>
@@ -55,8 +55,7 @@ function CountryPage() {
                 <h3>Languages: <span>{langs}</span></h3> 
             </div>
             <div>
-                <h3>Border Countries:</h3>
-                {borders && <>{borders}</>}
+                {borders && (<><h3>Border Countries:</h3><>{borders}</></>)}
             </div>
         </>
     )
